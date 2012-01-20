@@ -1,0 +1,122 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.whtcorp</groupId>
+    <artifactId>wdp</artifactId>
+    <packaging>maven-plugin</packaging>
+    <version>1.0</version>
+    <name>wdp Maven Plugin</name>
+    <url>http://maven.apache.org</url>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.ws</groupId>
+            <artifactId>admin-client</artifactId>
+            <version>7.0.0</version>
+            <systemPath>/Users/Shared/Developer/Java/Lib/WebSphere/com.ibm.ws.admin.client_7.0.0.jar</systemPath>
+            <scope>system</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm</groupId>
+            <artifactId>security</artifactId>
+            <version>7.0.0</version>
+            <scope>system</scope>
+            <systemPath>/Users/Shared/Developer/Java/Lib/IBM-SDK/ibmjgssprovider.jar</systemPath>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.whtcorp</groupId>
+                <artifactId>wdp</artifactId>
+                <version>1.0</version>
+                <configuration>
+                    <serverConnectionDefinition>
+                        <username>admin</username>
+                        <password>admin</password>
+                        <hostname>10.0.1.14</hostname>
+                        <port>8880</port>
+                        <!-- connector_security_enabled>true</connector_security_enabled -->
+                        <ssl_trustStore>/Users/Shared/Developer/WebSphere/profiles/rhel6/sa/etc/DummyClientTrustFile.jks
+                        </ssl_trustStore>
+                        <ssl_keyStore>/Users/Shared/Developer/WebSphere/profiles/rhel6/sa/etc/DummyClientKeyFile.jks
+                        </ssl_keyStore>
+                        <ssl_trustStorePassword>WebAS</ssl_trustStorePassword>
+                        <ssl_keyStorePassword>WebAS</ssl_keyStorePassword>
+                    </serverConnectionDefinition>
+                    <websphere_topology>
+                        <websphere_cell_name>localhostNode01Cell</websphere_cell_name>
+                        <websphere_node_name>localhostNode01</websphere_node_name>
+                        <websphere_server_name>server1</websphere_server_name>
+                    </websphere_topology>
+                    <ear_location>/tmp/</ear_location>
+                    <applications_list>
+                        <!--application>
+                            <applicationName>ivtApp</applicationName>
+                            <applicationDescription>fun transfer</applicationDescription>
+                            <jndi>
+                                <bindingIdentifier>a binding identifier</bindingIdentifier>
+                            </jndi>
+                        </application-->
+                        <application>
+                            <applicationName>ivtApp</applicationName>
+                            <data_source>
+                                <jndiName>jndi/preferences</jndiName>
+                            </data_source>
+                        </application>
+                    </applications_list>
+                    <jdbc_provider_list>
+                        <jdbc_provider>
+                            <name>Oracle JDBC Driver Provider Only</name> <!-- required attribute -->
+                            <description>Oracle JDBC Provider</description>
+                            <classPath>${ORACLE_JDBC_DRIVER_PATH}/ojdbc6.jar</classPath>
+                            <implementationClassName>oracle.jdbc.pool.OracleConnectionPoolDataSource</implementationClassName> <!-- required attribute -->
+                            <data_source_list>
+                                <data_source>
+                                    <name>preferences database</name>
+                                    <jndiName>jndi/preferences</jndiName>
+                                    <datasourceHelperClassname>com.ibm.websphere.rsadapter.Oracle10gDataStoreHelper</datasourceHelperClassname>
+                                    <statementCacheSize>10</statementCacheSize>
+                                    <description>Database for users preferences persistence</description>
+                                    <propertySet>
+                                        <j2ee_resource_property>
+                                            <name>URL</name>
+                                            <value>jdbc:oracle:thin:@10.0.1.14:1521:sample</value>
+                                        </j2ee_resource_property>
+                                    </propertySet>
+                                </data_source>
+                            </data_source_list>
+                        </jdbc_provider>
+                    </jdbc_provider_list>
+                    <shared_library_list>
+                        <shared_library>
+                            <name>my shared lib</name>
+                            <description>this is my shared lib</description>
+                            <classPath>/shared/lib/maven/test</classPath>
+                        </shared_library>
+                    </shared_library_list>
+                    <name_space_binding_list>
+                        <name_space_binding>
+                            <name>my ns binding</name>
+                            <nameInNameSpace>jndi/mynsbinding</nameInNameSpace>
+                            <stringToBind>hello world</stringToBind>
+                        </name_space_binding>
+                    </name_space_binding_list>
+                    <webSphere_object_type>
+                        <object_type>DeployedObject</object_type>
+                    </webSphere_object_type>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
