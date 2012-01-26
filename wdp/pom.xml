@@ -70,9 +70,12 @@
                         </application-->
                         <application>
                             <applicationName>ivtApp</applicationName>
-                            <data_source>
+                            <!--data_source>
                                 <jndiName>jndi/preferences</jndiName>
-                            </data_source>
+                            </data_source -->
+                            <!--shared_library>
+                                <name>my shared lib</name>
+                            </shared_library -->
                         </application>
                     </applications_list>
                     <jdbc_provider_list>
@@ -113,7 +116,7 @@
                         </name_space_binding>
                     </name_space_binding_list>
                     <webSphere_object_type>
-                        <object_type>DeployedObject</object_type>
+                        <object_type>Application</object_type>
                     </webSphere_object_type>
                 </configuration>
             </plugin>

@@ -43,7 +43,7 @@ public class ApplicationInstallMojo extends WebSphereAbstractMojo {
 
             getLog().info("Installing application: " + application.getApplicationName());
 
-            String installed = applicationManagementProxy.installApplication(application.getApplicationName(), websphere_topology, ear_location);
+            String installed = applicationManagementProxy.installApplication(application, websphere_topology, ear_location);
 
             getLog().info(installed);
         }
