@@ -1,1 +1,10 @@
-This file was created by IntelliJ IDEA 11.0.1 for binding GitHub repository
+Websphere deployment plugin
+
+This maven plugin is designed to allow deployment of applications and creation of configuration elements
+applications running inside Websphere application server.
+
+The plugin requires some IBM Websphere jars.
+Base folder for libraries can be configured via the property websphere.lib.path
+The files expected below this structure are:
+ - ${websphere.lib.path}/WebSphere/com.ibm.ws.admin.client_7.0.0.jar
+ - ${websphere.lib.path}/IBM-SDK/ibmjgssprovider.jar
