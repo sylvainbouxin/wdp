@@ -7,6 +7,9 @@
     <version>1.0</version>
     <name>wdp Maven Plugin</name>
     <url>http://maven.apache.org</url>
+    <properties>
+        <websphere.lib.path>/Users/Shared/Developer/Java/Lib</websphere.lib.path>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.apache.maven</groupId>
@@ -23,7 +26,7 @@
             <groupId>com.ibm.ws</groupId>
             <artifactId>admin-client</artifactId>
             <version>7.0.0</version>
-            <systemPath>/Users/Shared/Developer/Java/Lib/WebSphere/com.ibm.ws.admin.client_7.0.0.jar</systemPath>
+            <systemPath>${websphere.lib.path}/WebSphere/com.ibm.ws.admin.client_7.0.0.jar</systemPath>
             <scope>system</scope>
         </dependency>
         <dependency>
@@ -31,7 +34,7 @@
             <artifactId>security</artifactId>
             <version>7.0.0</version>
             <scope>system</scope>
-            <systemPath>/Users/Shared/Developer/Java/Lib/IBM-SDK/ibmjgssprovider.jar</systemPath>
+            <systemPath>${websphere.lib.path}/IBM-SDK/ibmjgssprovider.jar</systemPath>
         </dependency>
     </dependencies>
     <build>
