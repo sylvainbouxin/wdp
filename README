@@ -7,4 +7,4 @@ The plugin requires some IBM Websphere jars.
 Base folder for libraries can be configured via the property websphere.lib.path
 The files expected below this structure are:
  - ${websphere.lib.path}/WebSphere/com.ibm.ws.admin.client_7.0.0.jar
- - ${websphere.lib.path}/IBM-SDK/ibmjgssprovider.jar
+ - ${websphere.lib.path}/IBM-SDK/ibmjgssprovider.jar (only required if not using the IBM JDK)
