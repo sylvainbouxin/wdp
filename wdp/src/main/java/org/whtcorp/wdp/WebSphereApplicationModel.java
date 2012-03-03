@@ -9,6 +9,7 @@ public class WebSphereApplicationModel {
     private WebSphereDataSourceModel data_source;
     private List<WebSphereSharedLibraryBindingModel> shared_libraries_binding;
     private List<WebSphereJNDIModel> resource_binding_list;
+    private String ear_location;
 
     public String getApplicationName() {
         return applicationName;
@@ -48,6 +49,22 @@ public class WebSphereApplicationModel {
 
     public void setShared_libraries_binding(final List<WebSphereSharedLibraryBindingModel> shared_libraries_binding) {
         this.shared_libraries_binding = shared_libraries_binding;
+    }
+
+    /**
+     * This is the getter for ear_location.
+     * @return the ear_location
+     */
+    public String getEar_location() {
+        return ear_location;
+    }
+
+    /**
+     * This is the setter for ear_location.
+     * @param ear_location the ear_location to set
+     */
+    public void setEar_location(final String ear_location) {
+        this.ear_location = ear_location;
     }
 
 }

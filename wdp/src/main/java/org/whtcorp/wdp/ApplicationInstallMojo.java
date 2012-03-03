@@ -13,10 +13,10 @@ public class ApplicationInstallMojo extends WebSphereAbstractMojo {
      * @parameter
      */
     private WebSphereTopologyModel websphere_topology;
-    /**
-     * @parameter
-     */
-    private String ear_location;
+    // /**
+    // * @parameter
+    // */
+    // private String ear_location;
     /**
      * @parameter
      */
@@ -42,7 +42,8 @@ public class ApplicationInstallMojo extends WebSphereAbstractMojo {
 
             getLog().info("Installing application: " + application.getApplicationName());
 
-            final String installed = applicationManagementProxy.installApplication(application, websphere_topology, ear_location, getLog());
+            final String installed = applicationManagementProxy.installApplication(application, websphere_topology, getServerConnectionDefinition()
+                    .getEar_location(), getLog());
 
             getLog().info(installed);
         }
