@@ -1,7 +1,6 @@
 package org.whtcorp.wdp;
 
 import java.util.List;
-import java.util.Set;
 
 public class WebSphereDataSourceModel {
 
@@ -18,20 +17,13 @@ public class WebSphereDataSourceModel {
     private Boolean diagnoseConnectionUsage;
     private Integer statementCacheSize;
     private String datasourceHelperClassname;
-    // a <provider> of type: <J2EEResourceProvider>  which is not required
     private List<WebSphereJ2EEResourcePropertyModel> propertySet;
-    // a <connectionPool> of type: <ConnectionPool>  which is not required
-    // a <preTestConfig> of type: <ConnectionTest>  which is not required
-    // a <mapping> of type: <MappingModule>  which is not required
-    // a <properties> of type: <Property[]>  which is not required
-    // a <relationalResourceAdapter> of type: <J2CResourceAdapter>  which is not required
-
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -39,7 +31,7 @@ public class WebSphereDataSourceModel {
         return jndiName;
     }
 
-    public void setJndiName(String jndiName) {
+    public void setJndiName(final String jndiName) {
         this.jndiName = jndiName;
     }
 
@@ -47,7 +39,7 @@ public class WebSphereDataSourceModel {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 
@@ -55,7 +47,7 @@ public class WebSphereDataSourceModel {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(final String category) {
         this.category = category;
     }
 
@@ -63,7 +55,7 @@ public class WebSphereDataSourceModel {
         return providerType;
     }
 
-    public void setProviderType(String providerType) {
+    public void setProviderType(final String providerType) {
         this.providerType = providerType;
     }
 
@@ -71,7 +63,7 @@ public class WebSphereDataSourceModel {
         return authMechanismPreference;
     }
 
-    public void setAuthMechanismPreference(String authMechanismPreference) {
+    public void setAuthMechanismPreference(final String authMechanismPreference) {
         this.authMechanismPreference = authMechanismPreference;
     }
 
@@ -79,7 +71,7 @@ public class WebSphereDataSourceModel {
         return authDataAlias;
     }
 
-    public void setAuthDataAlias(String authDataAlias) {
+    public void setAuthDataAlias(final String authDataAlias) {
         this.authDataAlias = authDataAlias;
     }
 
@@ -87,7 +79,7 @@ public class WebSphereDataSourceModel {
         return manageCachedHandles;
     }
 
-    public void setManageCachedHandles(Boolean manageCachedHandles) {
+    public void setManageCachedHandles(final Boolean manageCachedHandles) {
         this.manageCachedHandles = manageCachedHandles;
     }
 
@@ -95,7 +87,7 @@ public class WebSphereDataSourceModel {
         return logMissingTransactionContext;
     }
 
-    public void setLogMissingTransactionContext(Boolean logMissingTransactionContext) {
+    public void setLogMissingTransactionContext(final Boolean logMissingTransactionContext) {
         this.logMissingTransactionContext = logMissingTransactionContext;
     }
 
@@ -103,7 +95,7 @@ public class WebSphereDataSourceModel {
         return xaRecoveryAuthAlias;
     }
 
-    public void setXaRecoveryAuthAlias(String xaRecoveryAuthAlias) {
+    public void setXaRecoveryAuthAlias(final String xaRecoveryAuthAlias) {
         this.xaRecoveryAuthAlias = xaRecoveryAuthAlias;
     }
 
@@ -111,7 +103,7 @@ public class WebSphereDataSourceModel {
         return diagnoseConnectionUsage;
     }
 
-    public void setDiagnoseConnectionUsage(Boolean diagnoseConnectionUsage) {
+    public void setDiagnoseConnectionUsage(final Boolean diagnoseConnectionUsage) {
         this.diagnoseConnectionUsage = diagnoseConnectionUsage;
     }
 
@@ -119,7 +111,7 @@ public class WebSphereDataSourceModel {
         return statementCacheSize;
     }
 
-    public void setStatementCacheSize(Integer statementCacheSize) {
+    public void setStatementCacheSize(final Integer statementCacheSize) {
         this.statementCacheSize = statementCacheSize;
     }
 
@@ -127,7 +119,7 @@ public class WebSphereDataSourceModel {
         return datasourceHelperClassname;
     }
 
-    public void setDatasourceHelperClassname(String datasourceHelperClassname) {
+    public void setDatasourceHelperClassname(final String datasourceHelperClassname) {
         this.datasourceHelperClassname = datasourceHelperClassname;
     }
 
@@ -135,7 +127,7 @@ public class WebSphereDataSourceModel {
         return propertySet;
     }
 
-    public void setPropertySet(List<WebSphereJ2EEResourcePropertyModel> propertySet) {
+    public void setPropertySet(final List<WebSphereJ2EEResourcePropertyModel> propertySet) {
         this.propertySet = propertySet;
     }
 }
