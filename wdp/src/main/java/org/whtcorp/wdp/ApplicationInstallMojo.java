@@ -3,7 +3,6 @@ package org.whtcorp.wdp;
 import java.util.List;
 
 import org.whtcorp.wdp.utils.WebSphereApplicationManagementProxy;
-import org.whtcorp.wdp.utils.WebSphereConfigurationServiceProxy;
 
 /**
  * @goal application.install
@@ -27,23 +26,23 @@ public class ApplicationInstallMojo extends WebSphereAbstractMojo {
     public void execute() {
         try {
             installApplication();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             e.printStackTrace();
         }
     }
 
     private void installApplication() throws Exception {
 
-        WebSphereApplicationManagementProxy applicationManagementProxy = new WebSphereApplicationManagementProxy(getAdminClient());
+        final WebSphereApplicationManagementProxy applicationManagementProxy = new WebSphereApplicationManagementProxy(getAdminClient());
         getLog().info("------------------------------------------------------------------------");
 
         for (int i = 0; i < applications_list.size(); i++) {
 
-            WebSphereApplicationModel application = (WebSphereApplicationModel) applications_list.get(i);
+            final WebSphereApplicationModel application = applications_list.get(i);
 
             getLog().info("Installing application: " + application.getApplicationName());
 
-            String installed = applicationManagementProxy.installApplication(application, websphere_topology, ear_location);
+            final String installed = applicationManagementProxy.installApplication(application.getApplicationName(), websphere_topology, ear_location);
 
             getLog().info(installed);
         }

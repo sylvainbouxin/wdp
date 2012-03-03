@@ -3,7 +3,6 @@ package org.whtcorp.wdp.utils;
 import java.io.Serializable;
 import java.util.Hashtable;
 import java.util.Locale;
-import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -16,14 +15,13 @@ import com.ibm.websphere.management.application.AppConstants;
 import com.ibm.websphere.management.application.AppManagement;
 import com.ibm.websphere.management.application.AppManagementProxy;
 import com.ibm.websphere.management.application.AppNotification;
-import org.whtcorp.wdp.WebSphereApplicationModel;
 import org.whtcorp.wdp.WebSphereTopologyModel;
 
 public class WebSphereApplicationManagementProxy {
 	
 	private AdminClient adminClient;
 	private AppManagement appManagement;
-	private Hashtable applicationPreferences;
+	private Hashtable<String, Serializable> applicationPreferences;
 	
 	public WebSphereApplicationManagementProxy(AdminClient adminClient) throws Exception {
 
@@ -53,7 +51,7 @@ public class WebSphereApplicationManagementProxy {
 		}
 	}
 	
-	public String installApplication(WebSphereApplicationModel application, WebSphereTopologyModel websphere_topology, String ear_location) throws Exception {
+	public String installApplication(String applicationName, WebSphereTopologyModel websphere_topology, String ear_location) throws Exception {
 		
 		queryAndGetApplicationManagementBean();
         String targetTopology;
@@ -68,36 +66,26 @@ public class WebSphereApplicationManagementProxy {
         module2server.put("*", targetTopology);
         applicationPreferences.put(AppConstants.APPDEPL_MODULE_TO_SERVER, module2server);
 
-        Properties bindingProperties = new Properties();
-        bindingProperties.put(AppConstants.APPDEPL_DFLTBNDG_VHOST, "default_host");
-        if(application.getShared_library() != null) {
-            bindingProperties.put(AppConstants.APPDEPL_RESOURCE_MAPPER_LIBRARY, application.getShared_library().getName());
-        }
+        if (appManagement.checkIfAppExists(applicationName, applicationPreferences, null)) {
+                  uninstallApplication(applicationName);
+      		}
 
-        applicationPreferences.put(AppConstants.APPDEPL_DFLTBNDG, bindingProperties);
-
-        if (appManagement.checkIfAppExists(application.getApplicationName(), applicationPreferences, null)) {
-            uninstallApplication(application.getApplicationName());
-        }
-
-
-
-        String earLocation = ear_location + application.getApplicationName() + ".ear";
+        String earLocation = ear_location + applicationName + ".ear";
 
         NotificationFilterSupport myFilter = new NotificationFilterSupport();
         myFilter.enableType(AppConstants.NotificationType);
         CountDownLatch latch = new CountDownLatch(1);
-        EventsNotificationListener listener = new EventsNotificationListener(adminClient, myFilter, "Install: " + application.getApplicationName(), AppNotification.INSTALL, latch);
+        EventsNotificationListener listener = new EventsNotificationListener(adminClient, myFilter, "Install: " + applicationName, AppNotification.INSTALL, latch);
 
-        appManagement.installApplication(earLocation, application.getApplicationName(), applicationPreferences, null);
+        appManagement.installApplication(earLocation, applicationName, applicationPreferences, null);
         latch.await();
 
-        String started = startApplication(application.getApplicationName());
+        String started = startApplication(applicationName);
 
         if (started.startsWith("INFO")) {
-            return "Application: " + application.getApplicationName() + " installed, but failed to start.";
+            return "Application: " + applicationName + " installed, but failed to start.";
         } else {
-            return "Application: " + application.getApplicationName() + " installed and started.";
+            return "Application: " + applicationName + " installed and started.";
         }
     }
 
