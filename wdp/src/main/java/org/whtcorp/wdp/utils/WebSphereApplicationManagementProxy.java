@@ -95,24 +95,8 @@ public class WebSphereApplicationManagementProxy {
             logger.info("Updating " + applicationName);
             final Vector applicationInfo = appManagement.getApplicationInfo(applicationName, null, null);
 
-            // [[module, uri, server, ModuleVersion, moduletype, moduletypeDisplay], [bsal-services-webapp, bsal-services-webapp.war,WEB-INF/web.xml,
-            // WebSphere:cell=wdd04515Node03Cell,node=wdd04515Node03,server=server1, 14, moduletype.web, Web Module]]
-            // [[AppVersion, ModuleVersion, module, EJB, uri, referenceBinding, resRef.type, oracleRef, JNDI, login.config.name, auth.props, resAuth,
-            // dataSourceProps], [13, 14, bsal-services-webapp, , bsal-services-webapp.war,WEB-INF/web.xml, config/bsal-services, java.lang.String,
-            // AppDeploymentOption.No, config/bsal-services, null, , Container, ], [13, 14, bsal-services-webapp, , bsal-services-webapp.war,WEB-INF/web.xml,
-            // jdbc/preferences-datasource, javax.sql.DataSource, AppDeploymentOption.No, preferences-datasource, null, , Container, ]][[AppVersion,
-            // ModuleVersion, module, EJB, uri, referenceBinding, resRef.type, oracleRef, JNDI, login.config.name, auth.props, resAuth, dataSourceProps], [13,
-            // 14, bsal-services-webapp, , bsal-services-webapp.war,WEB-INF/web.xml, config/bsal-services, java.lang.String, AppDeploymentOption.No,
-            // config/bsal-services, null, , Container, ], [13, 14, bsal-services-webapp, , bsal-services-webapp.war,WEB-INF/web.xml,
-            // jdbc/preferences-datasource, javax.sql.DataSource, AppDeploymentOption.No, preferences-datasource, null, , Container, ]]
-            // appManagement.updateApplication(applicationName, "bsal-services-webapp.war,WEB-INF/web.xml", arg2, "update", arg4, null);
             appManagement.stopApplication(applicationName, null, null);
-            // appManagement.redeployApplication(earLocation, applicationName, null, null);
-            // final Hashtable options = new Hashtable();
-            //
-            // options.put(AppConstants.APPDEPL_LOCALE, Locale.getDefault());
-            // options.put((AppConstants.APPUPDATE_CONTENTTYPE), AppConstants.APPUPDATE_CONTENT_APP);
-            // appManagement.updateApplication(applicationName, null, earLocation, AppConstants.APPUPDATE_UPDATE, options, null);
+
             uninstallApplication(application.getApplicationName());
             appManagement.installApplication(earLocation, applicationName, applicationPreferences, null);
             latch.await();
