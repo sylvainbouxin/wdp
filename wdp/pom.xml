@@ -9,6 +9,7 @@
     <url>http://maven.apache.org</url>
     <properties>
         <websphere.lib.path>/Users/Shared/Developer/Java/Lib</websphere.lib.path>
+        <oracle.jdbc.driver.path>/Users/Shared/Developer/Java/Lib/oracle</oracle.jdbc.driver.path>
     </properties>
     <dependencies>
         <dependency>
@@ -85,7 +86,7 @@
                         <jdbc_provider>
                             <name>Oracle JDBC Driver Provider Only</name> <!-- required attribute -->
                             <description>Oracle JDBC Provider</description>
-                            <classPath>${ORACLE_JDBC_DRIVER_PATH}/ojdbc6.jar</classPath>
+                            <classPath>${oracle.jdbc.driver.path}/ojdbc6.jar</classPath>
                             <implementationClassName>oracle.jdbc.pool.OracleConnectionPoolDataSource</implementationClassName> <!-- required attribute -->
                             <data_source_list>
                                 <data_source>
